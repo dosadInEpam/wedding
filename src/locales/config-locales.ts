@@ -1,5 +1,5 @@
 export const fallbackLng = 'en';
-export const languages = ['hn', 'en'];
+export const languages = ['hi', 'en'];
 export const defaultNS = 'common';
 export const cookieName = 'i18next';
 
@@ -20,7 +20,7 @@ export function i18nOptions(lng = fallbackLng, ns = defaultNS) {
 // ----------------------------------------------------------------------
 
 export const changeLangMessages = {
-  hn: {
+  hi: {
     success: 'भाषा बदल दी गई है!',
     error: 'भाषा बदलने में त्रुटि!',
     loading: 'प्रतीक्षा करें...',

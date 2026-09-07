@@ -26,9 +26,19 @@ export const CoupleIntroduction = ({
   return (
     <div
       ref={ref}
-      className="py-20 px-4 bg-gradient-to-b from-white to-rose-50/30"
+      className="relative overflow-hidden py-20 px-4 bg-gradient-to-b from-white to-rose-50/30"
     >
-      <div className="max-w-6xl mx-auto">
+      <Image
+        src="/assets/images/lord-ganesh.png"
+        alt=""
+        aria-hidden="true"
+        width={1000}
+        height={545}
+        className="pointer-events-none absolute left-1/2 top-4 z-0 h-auto w-[min(92vw,48rem)] -translate-x-1/2 opacity-30"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-80 bg-gradient-to-b from-white/65 via-white/45 to-transparent" />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -165,10 +175,9 @@ export const CoupleIntroduction = ({
           className="text-center mt-16"
         >
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto shadow-lg border border-white/40">
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-700 italic mb-4">
+            <p className="text-red-500 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-700 italic mb-4">
               {t('couple.love-quote')}
             </p>
-            <p className="text-gray-500 text-xs sm:text-sm">— Clannad</p>
           </div>
         </motion.div>
       </div>

@@ -18,7 +18,7 @@
     "contact": "Questions? Contact us."
   },
   "hero": {
-    "welcome": "Welcome to Our Wedding",
+    "welcome": "Welcome to Our Wedding Ceremony",
     "together": "Together",
     "scroll-down": "Scroll Down",
     "scroll-to-explore": "Scroll to explore our love story",
@@ -26,13 +26,13 @@
   },
   "couple": {
     "title": "Meet the Happy Couple",
-    "bride-description": "A beautiful soul with a heart full of love and dreams of a wonderful future together.",
-    "groom-description": "A kind and caring partner who brings joy and laughter to every day.",
-    "our-story": "Our Love Story",
-    "story-text": "Our journey began with a simple hello and has blossomed into the most beautiful love story. We're excited to share this special day with all of you.",
+    "bride-description": "D/O Smt. Janki Tulera & Sri Birendra Singh Tulera",
+    "groom-description": "S/O Smt. Hema Dosad & Late Sri Harish Chandra Singh Dosad",
+    "our-story": "|| Shri Ganeshay Namah ||",
+    "story-text": "You are cordially invited to join us in the celebration and bless the new couple",
     "the-groom": "The Groom",
     "the-bride": "The Bride",
-    "love-quote": "You’re the one I want to share every sunrise and sunset with."
+    "love-quote": "सर्व मंगल मांगल्ये शिवे सर्वार्थ साधिके शरण्ये त्रंबके गौरी नारायणी नमोस्तुते ।।"
   },
   "details": {
     "title": "Wedding Details",
@@ -55,16 +55,7 @@
     "mark-calendar": "Mark your calendar! 📅",
     "add-to-calendar": "Add to Calendar",
     "message": "Don't miss our special day! Add this event to your calendar and we'll send you a reminder.",
-    "ceremony": "Ceremony",
-    "get-directions": "Get Directions",
-    "reception": "Reception",
-    "please-note": "Please Note",
-    "dress-code": "Dress Code",
-    "formal-attire": "Formal Attire",
-    "parking": "Parking",
-    "valet-available": "Valet Available",
-    "contact": "Contact",
-    "our-wedding-day": "Our Wedding Day",
+    "our-wedding-day": "Wedding Day",
     "join-us": "Join us for our special day!"
   },
   "venue": {

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
+import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 
@@ -53,9 +54,19 @@ export const EventSchedule = () => {
   return (
     <div
       ref={ref}
-      className="py-16 px-4 bg-gradient-to-b from-white to-gray-50"
+      className="relative overflow-hidden py-16 px-4 bg-gradient-to-b from-white to-gray-50"
     >
-      <div className="max-w-4xl mx-auto">
+      <Image
+        src="/assets/images/Wedding-theme.png"
+        alt=""
+        aria-hidden="true"
+        width={736}
+        height={1104}
+        className="pointer-events-none absolute bottom-0 right-[-7rem] z-0 h-auto w-[28rem] max-w-none opacity-30 sm:right-[-5rem] sm:w-[32rem] md:right-[-3rem] md:w-[36rem] lg:right-0 lg:w-[40rem]"
+      />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-white/90 via-white/75 to-white/55" />
+
+      <div className="relative z-10 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}

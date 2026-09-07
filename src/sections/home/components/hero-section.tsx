@@ -37,15 +37,15 @@ export const HeroSection = ({
               transition={{ duration: 1, delay: 0.2 }}
               className="mb-6 sm:mb-8"
             >
-              <div className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-4 font-medium">
+              <div className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-4 font-medium">
                 {t('hero.welcome')}
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-gray-800 mb-6 leading-tight">
-                Our
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-gray-800 mb-6 leading-tight">
+                Invitation
                 <span className="block bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-                  Wedding
+                  न्योता
                 </span>
-              </h1>
+              </h2>
               <div className="w-32 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent mx-auto"></div>
             </motion.div>
 

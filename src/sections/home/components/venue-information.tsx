@@ -83,9 +83,7 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
               </div>
 
               <button
-                onClick={() =>
-                  window.open(generateMapLink(venue.ceremony.name), '_blank')
-                }
+                onClick={() => window.open(venue.ceremony.directionUrl, '_blank')}
                 className="w-full bg-gradient-to-r from-purple-400 to-indigo-500 text-white py-3 px-6 rounded-xl font-medium hover:from-purple-500 hover:to-indigo-600 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base cursor-pointer"
               >
                 {t('venue.view-map')}

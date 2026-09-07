@@ -12,9 +12,10 @@ export const WEDDING_CONFIG = {
   },
   venue: {
     ceremony: {
-      name: 'Masjid Songkok Recca Bone',
-      address: 'Jl. Jend. Ahmad Yani',
-      time: '4:00 PM',
+      name: 'Home',
+      address: 'Lweshal, Uttarakhand',
+      directionUrl: 'https://maps.app.goo.gl/m84U4vQuLNvVYZsx7',
+      time: '09:00 AM',
     },
     reception: {
       name: 'Hotel Novena Bone',
