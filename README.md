@@ -39,8 +39,6 @@ An elegant and interactive digital wedding invitation app built with Next.js, Ty
 - **Countdown Timer**: Real-time countdown to wedding day
 - **Venue Information**: Ceremony and reception locations with maps
 - **Event Schedule**: Wedding event timeline
-- **Gallery Preview**: Couple photos preview
-- **RSVP Form**: Guest confirmation form
 - **Closing Message**: Closing message from the couple
 
 ### 🌐 Internationalization (i18n)

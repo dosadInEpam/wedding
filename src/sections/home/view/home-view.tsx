@@ -10,8 +10,6 @@ import {
   CountdownTimer,
   VenueInformation,
   EventSchedule,
-  RSVP,
-  GalleryPreview,
   ClosingMessage,
   FloatingNavigation,
   NavigationFAB,
@@ -101,16 +99,6 @@ export default function HomeView() {
       <section id="venue" className="relative">
         <VenueInformation venue={WEDDING_CONFIG.venue} />
         <EventSchedule />
-      </section>
-
-      {/* Gallery Preview */}
-      <section id="gallery" className="relative">
-        <GalleryPreview />
-      </section>
-
-      {/* RSVP Section */}
-      <section id="rsvp" className="relative">
-        <RSVP />
       </section>
 
       {/* Closing Message */}

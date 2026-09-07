@@ -11,10 +11,10 @@ export const allLangs = [
     numberFormat: { code: 'id-ID', currency: 'IDR' },
   },
   {
-    value: 'id',
-    label: 'Indonesia',
-    countryCode: 'ID',
-    adapterLocale: 'id',
-    numberFormat: { code: 'id-ID', currency: 'IDR' },
+    value: 'hn',
+    label: 'Hindi',
+    countryCode: 'HN',
+    adapterLocale: 'hn',
+    numberFormat: { code: 'hn-HN', currency: 'RS' },
   },
 ];
