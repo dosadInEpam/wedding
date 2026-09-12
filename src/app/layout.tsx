@@ -11,9 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'The Wedding of Anurag & Bhawana',
+  title: 'The Wedding Invitation',
   description:
-    'Join us in celebrating the wedding of Anurag and Bhawana. Discover our wedding details, and more.',
+    'Join us in celebrating the auspicious union of love and togetherness. Discover our wedding details, and more.',
 };
 
 export default function RootLayout({
