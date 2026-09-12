@@ -130,10 +130,12 @@ export const HeroSection = ({
                     </div>
 
                     {index < pairRows.length - 1 && (
-                      <div className="flex items-center justify-center my-4 sm:my-6">
-                        <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div>
-                        <span className="mx-3 text-rose-500 text-lg sm:text-xl animate-pulse">✦</span>
-                        <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div>
+                      <div className="flex items-center justify-center gap-3 my-5 sm:my-7">
+                        <div className="h-1 w-16 sm:w-24 rounded-full bg-gradient-to-r from-transparent via-rose-500 to-rose-300"></div>
+                        <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-rose-400 bg-white/90 text-rose-600 shadow-[0_0_0_4px_rgba(251,113,133,0.08)] text-sm sm:text-base font-semibold animate-pulse">
+                          ✦
+                        </span>
+                        <div className="h-1 w-16 sm:w-24 rounded-full bg-gradient-to-r from-rose-300 via-rose-500 to-transparent"></div>
                       </div>
                     )}
                   </div>
