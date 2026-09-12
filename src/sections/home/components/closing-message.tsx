@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 
 interface ClosingMessageProps {
-  bride: string;
-  groom: string;
+  dosad?: string;
+  family?: string;
 }
 
-export const ClosingMessage = ({ bride, groom }: ClosingMessageProps) => {
+export const ClosingMessage = ({ dosad = 'Dosad', family = 'Family' }: ClosingMessageProps) => {
   const { t } = useTranslation('home');
 
   const [ref, inView] = useInView({
@@ -48,7 +48,7 @@ export const ClosingMessage = ({ bride, groom }: ClosingMessageProps) => {
             {t('closing-message.with-love')}
           </div>
           <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-rose-600 mt-2">
-            {groom} & {bride}
+            {dosad} {family}
           </div>
         </motion.div>
 

@@ -1,7 +1,10 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { formatWeddingTime } from '@/lib/wedding-utils';
+import {
+  formatWeddingTime,
+  generateGoogleCalendarLink,
+} from '@/lib/wedding-utils';
 import type { WeddingConfigType } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { useTranslate } from '@/locales';
@@ -17,6 +20,14 @@ export const WeddingDetailsCard = ({
 }: WeddingDetailsCardProps) => {
   const { currentLang } = useTranslate();
   const { t } = useTranslation('home');
+
+  const calendarUrl = generateGoogleCalendarLink({
+    title: t('details.title'),
+    start: date,
+    end: new Date(date.getTime() + 2 * 60 * 60 * 1000),
+    description: t('details.message'),
+    location: venue.ceremony.address,
+  });
 
   return (
     <div className="py-20 bg-gradient-to-br from-white to-rose-50/50">
@@ -164,7 +175,7 @@ export const WeddingDetailsCard = ({
               className="text-center"
             >
               <motion.a
-                href={venue.ceremony.directionUrl}
+                href={calendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}

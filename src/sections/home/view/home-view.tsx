@@ -53,12 +53,7 @@ export default function HomeView() {
 
   // Show letter animation first
   if (showLetter) {
-    return (
-      <LetterAnimation
-        onOpen={handleLetterOpen}
-        coupleName={`${WEDDING_CONFIG.bride.name} & ${WEDDING_CONFIG.groom.name}`}
-      />
-    );
+    return <LetterAnimation onOpen={handleLetterOpen} />;
   }
 
   return (
@@ -73,17 +68,14 @@ export default function HomeView() {
         <HeroSection
           isLoaded={isLoaded}
           couple={WEDDING_CONFIG}
+          couples={WEDDING_CONFIG.weddings}
           onScrollToSection={scrollToSection}
         />
       </section>
 
       {/* Couple Introduction */}
       <section id="couple" className="relative">
-        <CoupleIntroduction
-          bride={WEDDING_CONFIG.bride}
-          groom={WEDDING_CONFIG.groom}
-          isVisible={isLoaded}
-        />
+        <CoupleIntroduction couples={WEDDING_CONFIG.weddings} />
       </section>
 
       {/* Wedding Details */}
@@ -103,10 +95,7 @@ export default function HomeView() {
 
       {/* Closing Message */}
       <section id="closing" className="relative">
-        <ClosingMessage
-          bride={WEDDING_CONFIG.bride.fullName}
-          groom={WEDDING_CONFIG.groom.fullName}
-        />
+        <ClosingMessage />
       </section>
 
       {/* Music Player */}
