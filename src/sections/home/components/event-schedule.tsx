@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
+import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 
@@ -14,37 +15,46 @@ export const EventSchedule = () => {
 
   const scheduleItems = [
     {
-      time: '3:30 PM',
+      time: '10:00 AM',
       event: t('schedule.guest-arrival'),
       description: t('schedule.welcome-drinks'),
+      dateLabel: '25th November 2026',
+      dateClassName: 'text-lime-200/70',
+      eventClassName: 'bg-lime-50/70',
     },
     {
-      time: '4:00 PM',
+      time: '01:00 PM',
       event: t('schedule.wedding-ceremony'),
       description: t('schedule.vows'),
     },
     {
-      time: '4:30 PM',
+      time: '06:00 PM',
       event: t('schedule.photography'),
       description: t('schedule.welcome-drink'),
     },
     {
-      time: '6:30 PM',
+      time: '09:00 AM',
       event: t('schedule.reception-begins'),
       description: t('schedule.dinner-celebration'),
+      dateLabel: '26th November 2026',
+      dateClassName: 'text-violet-200/70',
+      eventClassName: 'bg-violet-50/70',
     },
     {
-      time: '7:30 PM',
+      time: '7:00 PM',
       event: t('schedule.first-dance'),
       description: t('schedule.special-moment'),
     },
     {
-      time: '8:00 PM',
+      time: '10:00 AM',
       event: t('schedule.dancing-party'),
       description: t('schedule.celebration-continues'),
+      dateLabel: '27th November 2026',
+      dateClassName: 'text-fuchsia-200/90',
+      eventClassName: 'bg-fuchsia-80/80',
     },
     {
-      time: '12:00 AM',
+      time: '08:00 PM',
       event: t('schedule.send-off'),
       description: t('schedule.sparkler-farewell'),
     },
@@ -53,9 +63,19 @@ export const EventSchedule = () => {
   return (
     <div
       ref={ref}
-      className="py-16 px-4 bg-gradient-to-b from-white to-gray-50"
+      className="relative overflow-hidden py-16 px-4 bg-gradient-to-b from-white to-gray-50"
     >
-      <div className="max-w-4xl mx-auto">
+      <Image
+        src="/assets/images/Wedding-theme.png"
+        alt=""
+        aria-hidden="true"
+        width={736}
+        height={1104}
+        className="pointer-events-none absolute bottom-0 right-[-7rem] z-0 h-auto w-[28rem] max-w-none opacity-30 sm:right-[-5rem] sm:w-[32rem] md:right-[-3rem] md:w-[36rem] lg:right-0 lg:w-[40rem]"
+      />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-white/90 via-white/75 to-white/55" />
+
+      <div className="relative z-10 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
@@ -94,18 +114,28 @@ export const EventSchedule = () => {
                       : 'md:text-left md:pl-8'
                   } pl-12 md:pl-0`}
                 >
-                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <div className="flex items-center mb-2">
-                      <span className="bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                        {item.time}
+                  <div className={`relative overflow-hidden rounded-2xl p-6 shadow-lg border border-gray-100 ${item.eventClassName ?? 'bg-white'}`}>
+                    {item.dateLabel ? (
+                      <span
+                        className={`pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-none tracking-wide opacity-55 ${item.dateClassName}`}
+                        aria-hidden="true"
+                      >
+                        {item.dateLabel}
                       </span>
+                    ) : null}
+                    <div className="relative z-10">
+                      <div className="flex items-center mb-2">
+                        <span className="bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                          {item.time}
+                        </span>
+                      </div>
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-1">
+                        {item.event}
+                      </h4>
+                      <p className="text-gray-600 text-xs sm:text-sm md:text-base">
+                        {item.description}
+                      </p>
                     </div>
-                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-1">
-                      {item.event}
-                    </h4>
-                    <p className="text-gray-600 text-xs sm:text-sm md:text-base">
-                      {item.description}
-                    </p>
                   </div>
                 </div>
               </motion.div>

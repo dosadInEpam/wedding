@@ -1,21 +1,29 @@
 'use client';
 
-import type { WeddingConfigType } from '@/types';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
 
+type CouplePerson = {
+  name?: string;
+  fullName: string;
+  photo: string;
+};
+
+type CouplePair = {
+  brideNameKey?: string;
+  groomNameKey?: string;
+  brideDescriptionKey?: string;
+  bride: CouplePerson;
+  groom: CouplePerson;
+};
+
 interface CoupleIntroductionProps {
-  bride: WeddingConfigType['bride'];
-  groom: WeddingConfigType['groom'];
-  isVisible: boolean;
+  couples: CouplePair[];
 }
 
-export const CoupleIntroduction = ({
-  bride,
-  groom,
-}: CoupleIntroductionProps) => {
+export const CoupleIntroduction = ({ couples }: CoupleIntroductionProps) => {
   const { t } = useTranslation('home');
 
   const [ref, inView] = useInView({
@@ -23,12 +31,28 @@ export const CoupleIntroduction = ({
     threshold: 0.2,
   });
 
+  const renderBrideName = (pair: CouplePair) =>
+    pair.brideNameKey ? t(pair.brideNameKey as never) : pair.bride.fullName;
+
+  const renderGroomName = (pair: CouplePair) =>
+    pair.groomNameKey ? t(pair.groomNameKey as never) : pair.groom.fullName;
+
   return (
     <div
       ref={ref}
-      className="py-20 px-4 bg-gradient-to-b from-white to-rose-50/30"
+      className="relative overflow-hidden py-20 px-4 bg-gradient-to-b from-white to-rose-50/30"
     >
-      <div className="max-w-6xl mx-auto">
+      <Image
+        src="/assets/images/lord-ganesh.png"
+        alt=""
+        aria-hidden="true"
+        width={1000}
+        height={545}
+        className="pointer-events-none absolute left-1/2 top-4 z-0 h-auto w-[min(92vw,48rem)] -translate-x-1/2 opacity-30"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-80 bg-gradient-to-b from-white/65 via-white/45 to-transparent" />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,116 +69,100 @@ export const CoupleIntroduction = ({
           </p>
         </motion.div>
 
-        {/* Couple Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Bride Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center lg:text-right"
-          >
-            <div className="relative inline-block mb-6">
-              <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-rose-100 to-pink-200 rounded-full flex items-center justify-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl shadow-2xl border-8 border-white">
-                <Image
-                  src={bride.photo}
-                  alt={`${bride.fullName}'s photo`}
-                  width={256}
-                  height={256}
-                  className="rounded-full object-cover"
-                  loading="lazy"
-                />
+        {/* Couples rendered as bride-groom pairs per wedding */}
+        <div className="space-y-16">
+          {couples.map((pair, pairIndex) => (
+            <div key={`${pair.bride.fullName}-${pair.groom.fullName}`} className="space-y-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                {/* Bride Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -50 }}
+                  transition={{ duration: 0.8, delay: 0.2 + pairIndex * 0.1 }}
+                  className="text-center lg:text-right"
+                >
+                  <div className="relative inline-block mb-6">
+                    <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-rose-100 to-pink-200 rounded-full flex items-center justify-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl shadow-2xl border-8 border-white">
+                      <Image
+                        src={pair.bride.photo}
+                        alt={`${pair.bride.fullName}'s photo`}
+                        width={256}
+                        height={256}
+                        className="rounded-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="absolute -bottom-4 -right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-rose-400 rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-white text-xl sm:text-2xl">👸</span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-gray-800 mb-2">
+                    {renderBrideName(pair)}
+                  </h3>
+                  <p className="text-base sm:text-lg md:text-xl text-rose-600 mb-4 font-medium">
+                    {t('couple.the-bride')}
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto lg:mx-0 lg:ml-auto">
+                    {t((pair.brideDescriptionKey ?? 'couple.bride-description') as never)}
+                  </p>
+
+                  <div className="mt-6 flex justify-center lg:justify-end space-x-2">
+                    <div className="w-2 h-2 bg-rose-300 rounded-full"></div>
+                    <div className="w-2 h-2 bg-rose-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
+                  </div>
+                </motion.div>
+
+                {/* Groom Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 50 }}
+                  transition={{ duration: 0.8, delay: 0.4 + pairIndex * 0.1 }}
+                  className="text-center lg:text-left"
+                >
+                  <div className="relative inline-block mb-6">
+                    <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-blue-100 to-indigo-200 rounded-full flex items-center justify-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl shadow-2xl border-8 border-white">
+                      <Image
+                        src={pair.groom.photo}
+                        alt={`${pair.groom.fullName}'s photo`}
+                        width={256}
+                        height={256}
+                        className="rounded-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute -bottom-4 -left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-white text-xl sm:text-2xl">🤴</span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-gray-800 mb-2">
+                    {renderGroomName(pair)}
+                  </h3>
+                  <p className="text-base sm:text-lg md:text-xl text-blue-600 mb-4 font-medium">
+                    {t('couple.the-groom')}
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto lg:mx-0">
+                    {t('couple.groom-description')}
+                  </p>
+
+                  <div className="mt-6 flex justify-center lg:justify-start space-x-2">
+                    <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  </div>
+                </motion.div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-rose-400 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-xl sm:text-2xl">👸</span>
-              </div>
+
+              {pairIndex < couples.length - 1 && (
+                <div className="flex items-center justify-center">
+                  <div className="h-px w-24 bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div>
+                  <span className="mx-3 text-2xl text-rose-500 animate-pulse">✦</span>
+                  <div className="h-px w-24 bg-gradient-to-r from-transparent via-rose-400 to-transparent"></div>
+                </div>
+              )}
             </div>
-
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-gray-800 mb-2">
-              {bride.fullName}
-            </h3>
-            <p className="text-base sm:text-lg md:text-xl text-rose-600 mb-4 font-medium">
-              {t('couple.the-bride')}
-            </p>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto lg:mx-0 lg:ml-auto">
-              {t('couple.bride-description')}
-            </p>
-
-            {/* Decorative Elements */}
-            <div className="mt-6 flex justify-center lg:justify-end space-x-2">
-              <div className="w-2 h-2 bg-rose-300 rounded-full"></div>
-              <div className="w-2 h-2 bg-rose-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
-            </div>
-          </motion.div>
-
-          {/* Heart Divider (Desktop) */}
-          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: inView ? 1 : 0, rotate: inView ? 0 : -180 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-rose-100"
-            >
-              <span className="text-xl sm:text-2xl md:text-3xl animate-pulse">
-                💖
-              </span>
-            </motion.div>
-          </div>
-
-          {/* Heart Divider (Mobile) */}
-          <div className="lg:hidden flex justify-center -my-6 z-10">
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: inView ? 1 : 0, rotate: inView ? 0 : -180 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-rose-100"
-            >
-              <span className="text-lg sm:text-xl md:text-2xl animate-pulse">
-                💖
-              </span>
-            </motion.div>
-          </div>
-
-          {/* Groom Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 50 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center lg:text-left"
-          >
-            <div className="relative inline-block mb-6">
-              <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-blue-100 to-indigo-200 rounded-full flex items-center justify-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl shadow-2xl border-8 border-white">
-                <Image
-                  src={groom.photo}
-                  alt={`${groom.fullName}'s photo`}
-                  width={256}
-                  height={256}
-                  className="rounded-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-xl sm:text-2xl">🤴</span>
-              </div>
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-gray-800 mb-2">
-              {groom.fullName}
-            </h3>
-            <p className="text-base sm:text-lg md:text-xl text-blue-600 mb-4 font-medium">
-              {t('couple.the-groom')}
-            </p>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto lg:mx-0">
-              {t('couple.groom-description')}
-            </p>
-
-            {/* Decorative Elements */}
-            <div className="mt-6 flex justify-center lg:justify-start space-x-2">
-              <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
-              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            </div>
-          </motion.div>
+          ))}
         </div>
 
         {/* Love Quote */}
@@ -165,10 +173,9 @@ export const CoupleIntroduction = ({
           className="text-center mt-16"
         >
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto shadow-lg border border-white/40">
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-700 italic mb-4">
+            <p className="text-red-500 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-700 italic mb-4">
               {t('couple.love-quote')}
             </p>
-            <p className="text-gray-500 text-xs sm:text-sm">— Clannad</p>
           </div>
         </motion.div>
       </div>

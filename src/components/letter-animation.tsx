@@ -7,12 +7,10 @@ import { useSearchParams } from 'next/navigation';
 
 interface LetterAnimationProps {
   onOpen: () => void;
-  coupleName: string;
 }
 
 export const LetterAnimation = ({
   onOpen,
-  coupleName,
 }: LetterAnimationProps) => {
   const { t } = useTranslation('home');
   const searchParams = useSearchParams();
@@ -168,15 +166,9 @@ export const LetterAnimation = ({
                           </span>
                         </p>
                       )}
-                      <h3 className="text-lg sm:text-xl font-serif text-gray-800 mb-2">
-                        {coupleName}
-                      </h3>
                       <p className="text-sm sm:text-base text-gray-600 mb-4">
                         {t('letter.invitation-title')}
                       </p>
-                      <div className="text-xs sm:text-sm text-gray-500 font-serif italic">
-                        &ldquo;{t('letter.invitation-quote')}&rdquo;
-                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -186,15 +178,24 @@ export const LetterAnimation = ({
               <AnimatePresence>
                 {isHovered && !isOpening && (
                   <>
-                    {[...Array(8)].map((_, i) => (
+                    {[
+                      [-30, -20],
+                      [-15, 30],
+                      [0, -35],
+                      [25, 20],
+                      [40, -15],
+                      [-50, 10],
+                      [10, 35],
+                      [55, 5],
+                    ].map((sparkle, i) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{
                           opacity: [0, 1, 0],
                           scale: [0, 1, 0],
-                          x: [0, (Math.random() - 0.5) * 100],
-                          y: [0, (Math.random() - 0.5) * 100],
+                          x: [0, sparkle[0]],
+                          y: [0, sparkle[1]],
                         }}
                         exit={{ opacity: 0 }}
                         transition={{
