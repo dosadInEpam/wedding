@@ -37,7 +37,7 @@ export const EventSchedule = () => {
       event: t('schedule.reception-begins'),
       description: t('schedule.dinner-celebration'),
       dateLabel: '26th November 2026',
-      dateClassName: 'text-violet-200/70',
+      dateClassName: 'text-fuchsia-200/70',
       eventClassName: 'bg-violet-50/70',
     },
     {
@@ -115,6 +115,15 @@ export const EventSchedule = () => {
                   } pl-12 md:pl-0`}
                 >
                   <div className={`relative overflow-hidden rounded-2xl p-6 shadow-lg border border-gray-100 ${item.eventClassName ?? 'bg-white'}`}>
+                    {item.dateLabel ? (
+                      <div className="relative z-10 mb-3 flex items-center gap-3">
+                        <span className="h-px flex-1 bg-stone-700/80" />
+                        <span className={`font-serif text-[12px] sm:text-[13px] md:text-[14px] font-bold tracking-[0.22em] uppercase text-stone-950 ${item.dateClassName ?? 'text-rose-700'}`}>
+                          {item.dateLabel}
+                        </span>
+                        <span className="h-px flex-1 bg-stone-700/80" />
+                      </div>
+                    ) : null}
                     {item.dateLabel ? (
                       <span
                         className={`pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-none tracking-wide opacity-55 ${item.dateClassName}`}

@@ -9,6 +9,7 @@ export function LanguageToggle() {
   const { onChangeLang, currentLang } = useTranslate();
 
   const isHindi = currentLang?.value === 'hi';
+  const switchTitle = isHindi ? 'Switch to English' : 'हिंदी में बदलें';
 
   const handleChangeLang = useCallback(
     (newLang: string) => {
@@ -26,7 +27,8 @@ export function LanguageToggle() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className="relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 group overflow-hidden cursor-pointer text-gray-600 hover:text-blue-500 hover:bg-blue-50/80"
-      title={`Switch to ${isHindi ? 'English' : 'हिंदी'}`}
+      title={switchTitle}
+      aria-label={switchTitle}
     >
       {/* Icon with Flag Animation */}
       <motion.span
