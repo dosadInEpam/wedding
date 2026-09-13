@@ -245,12 +245,12 @@ export default function MusicPlayer({ className = '' }: MusicPlayerProps) {
           ref={audioRef}
           loop
           preload="auto"
-          src="/assets/audio/shirushi-lisa.mp3"
+          src="/assets/audio/Phera-Bhanvara.mp3"
           aria-label="Wedding background music"
         >
           <track
             kind="captions"
-            src="/assets/audio/shirushi-lisa.mp3"
+            src="/assets/audio/Phera-Bhanvara.mp3"
             label="No captions available"
           />
           Your browser does not support the audio element.
