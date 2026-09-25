@@ -22,7 +22,7 @@ export const WEDDING_CONFIG = {
       time: '10:00 AM',
     },
     reception: {
-      name: 'Hotel Novena Bone',
+      name: '',
       address: '',
       time: '6:30 PM',
     },
@@ -50,7 +50,7 @@ export const WEDDING_CONFIG = {
           time: '10:00 AM',
         },
         reception: {
-          name: 'Hotel Novena Bone',
+          name: '',
           address: '',
           time: '6:30 PM',
         },
@@ -79,7 +79,7 @@ export const WEDDING_CONFIG = {
           time: '10:00 AM',
         },
         reception: {
-          name: 'Hotel Novena Bone',
+          name: '',
           address: '',
           time: '6:30 PM',
         },
