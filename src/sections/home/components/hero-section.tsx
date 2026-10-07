@@ -1,6 +1,7 @@
 'use client';
 
 import type { WeddingConfigType } from '@/types';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 
@@ -89,10 +90,13 @@ export const HeroSection = ({
                   <div key={`${pair.bride.fullName}-${pair.groom.fullName}`}> 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10">
                       <div className="text-center flex-shrink-0 justify-items-center">
-                        <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 shadow-lg">
-                          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                            👰🏻
-                          </span>
+                        <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg overflow-hidden">
+                          <Image
+                            src="/assets/images/bride_icon.png"
+                            alt="Bride"
+                            fill
+                            className="object-contain"
+                          />
                         </div>
                         <div className="w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 mx-auto px-2">
                           <h3
@@ -113,10 +117,13 @@ export const HeroSection = ({
                       </div>
 
                       <div className="text-center flex-shrink-0 justify-items-center">
-                        <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-full flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 shadow-lg">
-                          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                            🤵🏻
-                          </span>
+                        <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg overflow-hidden">
+                          <Image
+                            src="/assets/images/groom_icon.png"
+                            alt="Groom"
+                            fill
+                            className="object-contain"
+                          />
                         </div>
                         <div className="w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 mx-auto px-2">
                           <h3
