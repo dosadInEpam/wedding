@@ -27,3 +27,61 @@ body {
 * {
   font-family: var(--font-poppins);
 }
+
+.falling-petals {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.falling-petals__petal {
+  position: absolute;
+  top: -12vh;
+  left: var(--petal-x);
+  width: var(--petal-size);
+  height: var(--petal-height);
+  opacity: 0;
+  filter: drop-shadow(0 2px 4px rgb(89 24 48 / 35%));
+  will-change: transform, opacity;
+  animation: falling-petal var(--petal-duration) linear var(--petal-delay) infinite;
+}
+
+@keyframes falling-petal {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  6% {
+    opacity: var(--petal-opacity);
+  }
+
+  12% {
+    opacity: var(--petal-opacity);
+  }
+
+  30% {
+    transform: translate3d(var(--petal-drift), 27vh, 0) rotate(100deg);
+  }
+
+  55% {
+    transform: translate3d(var(--petal-mid-drift), 58vh, 0) rotate(205deg);
+  }
+
+  80% {
+    transform: translate3d(var(--petal-drift), 88vh, 0) rotate(295deg);
+  }
+
+  100% {
+    transform: translate3d(0, 112vh, 0) rotate(var(--petal-spin));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .falling-petals {
+    display: none;
+  }
+}
