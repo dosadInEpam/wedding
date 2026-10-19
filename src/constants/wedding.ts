@@ -63,7 +63,7 @@ export const WEDDING_CONFIG = {
       groomNameKey: 'couple.groom-2-name' as const,
       bride: {
         name: 'मानसी',
-        fullName: 'Mansi Rana',
+        fullName: 'Manshi Rana',
         photo: '/assets/images/bride-circle.png',
       },
       groom: {
