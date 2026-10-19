@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
+import { FallingFlowerPetals } from './falling-flower-petals';
 
 type CouplePerson = {
   name?: string;
@@ -51,6 +52,8 @@ export const CoupleIntroduction = ({ couples }: CoupleIntroductionProps) => {
         className="pointer-events-none absolute left-1/2 top-4 z-0 h-auto w-[min(92vw,48rem)] -translate-x-1/2 opacity-30"
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-80 bg-gradient-to-b from-white/65 via-white/45 to-transparent" />
+
+      <FallingFlowerPetals />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section Header */}
