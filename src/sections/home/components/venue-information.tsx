@@ -59,7 +59,7 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
                   {venue.ceremony.name}
                 </h4>
                 <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4">
-                  {venue.ceremony.address}
+                  {t('venue.ceremony-address')}
                 </p>
                 <div className="inline-block bg-white/60 rounded-lg px-4 py-2 shadow-sm">
                   <p className="text-purple-700 font-medium text-sm sm:text-base">
